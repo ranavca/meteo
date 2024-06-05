@@ -1,6 +1,6 @@
 from flask import Flask
-from lib.weather import Weather
-from lib.database import Database
+from src.weather import Weather
+from src.database import Database
 from flask_apscheduler import APScheduler
 
 app = Flask(__name__)
