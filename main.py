@@ -10,8 +10,8 @@ weather = Weather()
 
 @scheduler.task('interval', id='save_meteo', seconds=10)
 def saveWeatherValues():
-    temp = weather._bmp
-    database.save(10, 2, 594)
+    weatherValues = weather.getWeatherValues()
+    database.save(weatherValues["temperature"], weatherValues["humidity"], weatherValues["pressure"])
 
 if __name__ == '__main__':
     database.onStart()
