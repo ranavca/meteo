@@ -17,3 +17,11 @@ class Database:
         cursor = self.connection.cursor()
         cursor.execute('INSERT INTO meteo (temperature, humidity, pressure, light, wind) VALUES (?, ?, ?, ?, ?)', (temperature, humidity, pressure, 0, 0))
         self.connection.commit()
+
+    def index(self):
+        cursor = self.connection.cursor()
+        list = []
+        res = cursor.execute('SELECT * FROM meteo')
+        for row in res:
+            list.append(row)        
+        return list

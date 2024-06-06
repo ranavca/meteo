@@ -1,25 +1,35 @@
 const ctx = document.getElementById('temperature-chart');
 const serverDataRoot = document.getElementById("__METEO_DATA__")
-console.log(serverDataRoot.innerHTML)
-const parsedServerData = JSON.parse(serverDataRoot.innerText)
-console.log(parsedServerData)
+const parsedServerData = JSON.parse(serverDataRoot.innerText).data
+const lastTen = parsedServerData.slice(-50)
 
-const labels = ["Hola", "hola", "Hola", "hola", "Hola", "hola",]
+
+const labels = lastTen.map((item) => item[1])
+const temperature = lastTen.map((item) => item[2])
+const humidity = lastTen.map((item) => item[3])
+const pressure = lastTen.map((item) => item[4])
 const data = {
     labels: labels,
     datasets: [
         {
-            label: 'Dataset 1',
-            data: [1, 2, 3, 4, 5],
+            label: 'Temperatura',
+            data: temperature,
             borderColor: "rgba(255, 0, 0, 1)",
             backgroundColor: "rgba(255, 0, 0, 1)",
             yAxisID: 'y',
         },
         {
-            label: 'Dataset 1',
-            data: [5, 4, 2, 5, 4],
-            borderColor: "rgba(255, 0, 0, 1)",
-            backgroundColor: "rgba(255, 0, 0, 1)",
+            label: 'Presión',
+            data: pressure,
+            borderColor: "rgba(0, 255, 0, 1)",
+            backgroundColor: "rgba(0, 255, 0, 1)",
+            yAxisID: 'y',
+        },
+        {
+            label: 'Humedad',
+            data: humidity,
+            borderColor: "rgba(0, 0, 255, 1)",
+            backgroundColor: "rgba(0, 0, 255, 1)",
             yAxisID: 'y',
         },
     ]
@@ -40,7 +50,7 @@ const config = {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart.js Line Chart - Multi Axis'
+                text: 'Últimos datos'
             }
         },
         scales: {

@@ -13,7 +13,7 @@ database = Database()
 
 @app.route("/")
 def renderHome():
-    return render_template("index.html", res=[database])
+    return render_template("index.html", res=database.index())
 
 # @scheduler.task('interval', id='save_meteo', seconds=10)
 # def saveWeatherValues():

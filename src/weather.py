@@ -2,7 +2,6 @@ import adafruit_dht
 import libraries.Adafruit_BMP.BMP085 as BMP085
 
 DHT_PIN = 23
-BMP_PIN = 24
 
 class Weather:
     def __init__(self) -> None:
