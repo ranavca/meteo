@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from src.database import Database
 from flask_apscheduler import APScheduler
 import os
+import random
 
 template_dir = os.path.abspath('./src/templates/')
 static_dir = os.path.abspath('./src/static/')
@@ -14,6 +15,12 @@ database = Database()
 @app.route("/")
 def renderHome():
     return render_template("index.html", res=database.index())
+
+@app.route("/init")
+def initialize():
+    for i in range(0, 50):
+        database.save(random.randint(-10, 30), random.randint(1, 100), random.randint(956, 1012))
+    return "Ready"
 
 # @scheduler.task('interval', id='save_meteo', seconds=10)
 # def saveWeatherValues():
