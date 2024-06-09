@@ -1,7 +1,7 @@
 import sqlite3
 
 DB_TIMEOUT_MS = 30000
-DB_NAME = 'src/database/meteo.db'
+DB_NAME = 'meteo.db'
 
 
 class Database:
