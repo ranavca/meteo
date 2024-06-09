@@ -1,5 +1,5 @@
 import adafruit_dht
-import Adafruit_BMP.BMP085 as BMP085
+import BMP085 as BMP085
 
 DHT_PIN = 23
 
