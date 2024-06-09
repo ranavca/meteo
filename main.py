@@ -1,13 +1,11 @@
 from flask import Flask, render_template
-from src.weather import Weather
-from src.database import Database
+from weather import Weather
+from database import Database
 from flask_apscheduler import APScheduler
 import os
 import random
 
-template_dir = os.path.abspath('./src/templates/')
-static_dir = os.path.abspath('./src/static/')
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+app = Flask(__name__)
 scheduler = APScheduler()
 database = Database()
 weather = Weather()
