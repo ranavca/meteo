@@ -3,7 +3,6 @@ import sqlite3
 DB_TIMEOUT_MS = 30000
 DB_NAME = 'meteo.db'
 
-
 class Database:
     def __init__(self) -> None:
         self.connection = sqlite3.connect(database=DB_NAME, check_same_thread=False, timeout=DB_TIMEOUT_MS)
@@ -23,5 +22,12 @@ class Database:
         list = []
         res = cursor.execute('SELECT * FROM meteo')
         for row in res:
-            list.append(row)        
+            print(row)
+            list.append({
+                "id": row[0],
+                "date": row[1],
+                "temperature": row[2],
+                "humidity": row[3],
+                "pressure": row[4],
+            })        
         return list
